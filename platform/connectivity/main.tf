@@ -1,5 +1,12 @@
 terraform {
   required_version = ">= 1.14.8"
+  
+  backend "azurerm" {
+    resource_group_name = "rg-terraform-state"
+    storage_account_name = "stk85tfstate13413"
+    container_name = "tfstate"
+    key = "platform/connectivity/terraform.tfstate"
+  }
 
   required_providers {
     azurerm = {
