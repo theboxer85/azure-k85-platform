@@ -54,6 +54,8 @@ jobs:
 
       - name: Terraform Plan
         working-directory: ${{ env.TF_WORKING_DIR }}
+        env:
+          TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
         run: terraform plan -no-color
 
   terraform-apply:
@@ -76,4 +78,6 @@ jobs:
 
       - name: Terraform Apply
         working-directory: ${{ env.TF_WORKING_DIR }}
+        env:
+          TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
         run: terraform apply -auto-approve
