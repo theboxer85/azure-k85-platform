@@ -1,11 +1,11 @@
 terraform {
   required_version = ">= 1.14.8"
-  
+
   backend "azurerm" {
-    resource_group_name = "rg-terraform-state"
+    resource_group_name  = "rg-terraform-state"
     storage_account_name = "stk85tfstate13413"
-    container_name = "tfstate"
-    key = "platform/connectivity/terraform.tfstate"
+    container_name       = "tfstate"
+    key                  = "platform/connectivity/terraform.tfstate"
   }
 
   required_providers {
@@ -63,3 +63,16 @@ resource "azurerm_resource_group" "connectivity" {
   }
 }
 
+module "policy" {
+  source = "../../modules/policy"
+  management_group_id = azurerm_management_group.root.id
+  allowed_locations = [ 
+    "eastus",
+    "eastus2",
+    "westus",
+    "westus2",
+    "centralus",
+    "southcentralus",
+    "northcentralus"
+    ]
+}
