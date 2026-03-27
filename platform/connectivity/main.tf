@@ -64,9 +64,9 @@ resource "azurerm_resource_group" "connectivity" {
 }
 
 module "policy" {
-  source = "../../modules/policy"
+  source              = "../../modules/policy"
   management_group_id = azurerm_management_group.root.id
-  allowed_locations = [ 
+  allowed_locations = [
     "eastus",
     "eastus2",
     "westus",
@@ -74,5 +74,5 @@ module "policy" {
     "centralus",
     "southcentralus",
     "northcentralus"
-    ]
+  ]
 }
